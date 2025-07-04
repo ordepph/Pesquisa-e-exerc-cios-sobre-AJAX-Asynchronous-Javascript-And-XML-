@@ -1,1 +1,0 @@
-# Pesquisa-e-exerc-cios-sobre-AJAX-Asynchronous-Javascript-And-XML-
