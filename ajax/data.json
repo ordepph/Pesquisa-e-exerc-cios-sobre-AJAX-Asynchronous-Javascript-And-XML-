@@ -1,0 +1,10 @@
+{
+  "message": "Dados carregados com sucesso!",
+  "timestamp": "2025-07-04T10:00:00Z",
+  "items": [
+    {"id": 1, "name": "Item A"},
+    {"id": 2, "name": "Item B"},
+    {"id": 3, "name": "Item C"}
+  ]
+}
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX com Async/Await</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #output { border: 1px solid #ccc; padding: 10px; min-height: 100px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Exemplo AJAX com Async/Await</h1>
+    <button id="loadData">Carregar Dados</button>
+    <div id="output"></div>
+
+    <script>
+        async function loadDataWithAsyncAwait() {
+            try {
+                const response = await fetch("data.json");
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                throw new Error(`Erro ao carregar dados: ${error.message}`);
+            }
+        }
+
+        document.getElementById("loadData").addEventListener("click", async function() {
+            try {
+                const data = await loadDataWithAsyncAwait();
+                document.getElementById("output").innerHTML = `<p>${data.message}</p><pre>${JSON.stringify(data.items, null, 2)}</pre>`;
+            } catch (error) {
+                document.getElementById("output").innerHTML = `<p>${error.message}</p>`;
+                console.error("Erro na requisição com Async/Await:", error);
+            }
+        });
+    </script>
+</body>
+</html>
+
+

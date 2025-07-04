@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX com Fetch API</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #output { border: 1px solid #ccc; padding: 10px; min-height: 100px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Exemplo AJAX com Fetch API</h1>
+    <button id="loadData">Carregar Dados</button>
+    <div id="output"></div>
+
+    <script>
+        document.getElementById("loadData").addEventListener("click", function() {
+            fetch("data.json")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro HTTP! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById("output").innerHTML = `<p>${data.message}</p><pre>${JSON.stringify(data.items, null, 2)}</pre>`;
+                })
+                .catch(error => {
+                    document.getElementById("output").innerHTML = `<p>Erro ao carregar dados: ${error.message}</p>`;
+                    console.error("Erro na requisição Fetch:", error);
+                });
+        });
+    </script>
+</body>
+</html>
+
+
